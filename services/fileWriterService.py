@@ -4,7 +4,7 @@ import click
 
 def write_pom(project_name):
     current_path = os.getcwd()
-    pom = open(current_path + "/" + project_name + "/src/main/resources/pom.xml", "w+")
+    pom = open(current_path + "/" + project_name + "/pom.xml", "w+")
     pom.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
 <project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n\
          xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\
