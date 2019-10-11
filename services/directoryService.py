@@ -4,7 +4,6 @@ import click
 
 def make_file_structure(project_name):
     current_path = os.getcwd()
-    click.echo("{} to create".format(current_path + project_name))
     os.mkdir(current_path + "/" + project_name)
     os.mkdir(current_path + "/" + project_name + "/src")
     os.mkdir(current_path + "/" + project_name + "/test")
