@@ -87,3 +87,20 @@ def write_pom(project_name):
     </build>\n\
 </project>")
     pom.close()
+
+def write_application_java(project_name):
+    current_path = os.getcwd()
+    application_java = open(current_path + "/" + project_name + "/src/main/java/com/"+project_name+"/Application.java", "w+")
+    application_java.write("package com."+project_name+";\n\
+    \n\
+import org.springframework.boot.SpringApplication;\n\
+import org.springframework.boot.autoconfigure.SpringBootApplication;\n\
+    \n\
+@SpringBootApplication\n\
+public class Application {\n\
+    \n\
+    public static void main(String[] args) {\n\
+        SpringApplication.run(Application.class, args);\n\
+    }\n\
+}"
+    )
