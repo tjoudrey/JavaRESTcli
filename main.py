@@ -10,6 +10,7 @@ def main(project_name, greeting):
     click.echo("Making {} ...".format(project_name))
     directoryService.make_file_structure(project_name)
     fileWriter.write_pom(project_name)
+    fileWriter.write_application_properties(project_name, "database")
 
 if __name__ == "__main__":
     main()

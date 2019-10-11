@@ -1,6 +1,23 @@
 import os
 import click
 
+def write_application_properties(project_name, database_name):
+    current_path = os.getcwd()
+    application_properties = open(current_path + "/" + project_name + "/src/main/resources/application.properties", "w+")
+    application_properties.write("spring.datasource.url=jdbc:postgresql://localhost:5432/"+ database_name +"\n\
+spring.datasource.username=postgres\n\
+spring.datasource.password=postgres\n\
+spring.jpa.show-sql=true\n\
+    \n\
+## Hibernate Properties\n\
+# The SQL dialect makes Hibernate generate better SQL for the chosen database\n\
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect\n\
+    \n\
+# Hibernate ddl auto (create, create-drop, validate, update)\n\
+spring.jpa.hibernate.ddl-auto = update\n\
+    \n\
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true\n\
+")
 
 def write_pom(project_name):
     current_path = os.getcwd()
