@@ -40,7 +40,7 @@ def main(generate, rest, service, repo, model, controller):
         schema = click.prompt("what is the db schema for this?")
 
 
-        """a cli to generate java REST apis for postgreSQL"""
+        """a cli to generate java REST api for postgreSQL"""
         click.echo("Making {} ...".format(project_name))
         directoryService.make_file_structure(project_name)
 
