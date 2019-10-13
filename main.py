@@ -35,7 +35,7 @@ def main(generate, service, repo, model, controller):
         fileWriter.write_model(model[0], model[1], model[2])
 
     elif repo:
-        fileWriter.write_repo(model[0], model[1])
+        fileWriter.write_repo(repo[0], repo[1])
 
     elif controller:
         fileWriter.write_controller(controller[0], controller[1])

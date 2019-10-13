@@ -109,12 +109,12 @@ public class Application {\n\
 def write_model(project_name, model_name, schema):
     current_path = os.getcwd()
     model = open(current_path+"/"+model_name.title()+".java", "w+")
-    model.write(
-"com."+project_name+".models;\n\
+    model.write("package com."+project_name+".models;\n\
 import javax.persistence.*;\n\
+import java.time.ZonedDateTime;\n\
 @Entity\n\
 @Table(name = \""+model_name+"\", schema = \""+schema+"\")\n\
-public class "+model_name+" {\n\
+public class "+model_name.title()+" {\n\
 \n\
     @Id\n\
     @GeneratedValue(strategy = GenerationType.AUTO)\n\
@@ -124,7 +124,7 @@ public class "+model_name+" {\n\
      @Column(name=\"created_on\")\n\
     private ZonedDateTime created_on;\n\
 \n\
-    public "+model_name+"() {\n\
+    public "+model_name.title()+"() {\n\
     this.setCreated_on(ZonedDateTime.now());\n\
     }\n\
 \n\
@@ -139,6 +139,10 @@ public class "+model_name+" {\n\
     public ZonedDateTime getCreated_on() {\n\
         return created_on;\n\
     }\n\
+    public void setCreated_on(ZonedDateTime created_on) {\n\
+        this.created_on = created_on;\n\
+    }\n\
+}\n\
 "
             )
 
@@ -146,28 +150,27 @@ public class "+model_name+" {\n\
 def write_repo(project_name, model_name):
     current_path = os.getcwd()
     model = open(current_path + "/" + model_name.title()+"Repository.java", "w+")
-    model.write("\n\
-package com."+project_name+".repositories;\n\
+    model.write("package com."+project_name+".repositories;\n\
 \n\
 import com."+project_name+".models."+model_name.title()+";\n\
 import org.springframework.data.jpa.repository.JpaRepository;\n\
 import org.springframework.stereotype.Repository;\n\
 \n\
 @Repository\n\
-public interface ""Repository extends JpaRepository<"+model_name.title()+", Long> {\n\
+public interface "+model_name.title()+"Repository extends JpaRepository<"+model_name.title()+", Long> {\n\
 }")
 
 
 def write_controller(project_name, model_name):
     current_path = os.getcwd()
     controller = open(current_path + "/" + model_name.title() + "Controller.java", "w+")
-    controller.write("\n\
-package com."+project_name+".controllers;\n\
+    controller.write("package com."+project_name+".controllers;\n\
                      \n\
-import com.forte."+project_name+".models."+model_name+";\n\
-import com.forte."+project_name+".repositories."+model_name+"Repository;\n\
+import com."+project_name+".models."+model_name.title()+";\n\
+import com."+project_name+".repositories."+model_name.title()+"Repository;\n\
 import org.springframework.beans.factory.annotation.Autowired;\n\
 import org.springframework.web.bind.annotation.*;\n\
+import java.util.List;\n\
     \n\
 @RestController\n\
 @RequestMapping(\"/api\")\n\
@@ -189,7 +192,7 @@ public class "+model_name.title()+"Controller {\n\
     }\n\
             \n\
     @PostMapping(\"/"+model_name.lower()+"\")\n\
-    public void set"+model_name.title()+"() throws MessagingException {\n\
+    public void set"+model_name.title()+"() {\n\
         "+model_name.title()+" "+model_name.lower()+" = new "+model_name.title()+"();\n\
         "+model_name.lower()+"Repository.save("+model_name.lower()+");\n\
     }\n\

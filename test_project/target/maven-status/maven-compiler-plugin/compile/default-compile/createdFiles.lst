@@ -1,0 +1,4 @@
+com/test_project/Application.class
+com/test_project/controllers/TestController.class
+com/test_project/models/Test.class
+com/test_project/repositories/TestRepository.class
