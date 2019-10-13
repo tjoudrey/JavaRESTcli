@@ -41,9 +41,7 @@ Options:
   
                             project name
                             
-                            model
-                            
-                            name
+                            model name
                             
                             db schema name
                             
