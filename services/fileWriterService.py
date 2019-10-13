@@ -1,10 +1,11 @@
 import os
 import click
 
-def write_application_properties(project_name, database_name):
+
+def write_application_properties(project_name, database_name, database_url):
     current_path = os.getcwd()
     application_properties = open(current_path + "/" + project_name + "/src/main/resources/application.properties", "w+")
-    application_properties.write("spring.datasource.url=jdbc:postgresql://localhost:5432/"+ database_name +"\n\
+    application_properties.write("spring.datasource.url=jdbc:postgresql://"+database_url+"/"+database_name+"\n\
 spring.datasource.username=postgres\n\
 spring.datasource.password=postgres\n\
 spring.jpa.show-sql=true\n\
@@ -18,6 +19,7 @@ spring.jpa.hibernate.ddl-auto = update\n\
     \n\
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true\n\
 ")
+
 
 def write_pom(project_name):
     current_path = os.getcwd()
@@ -88,6 +90,7 @@ def write_pom(project_name):
 </project>")
     pom.close()
 
+
 def write_application_java(project_name):
     current_path = os.getcwd()
     application_java = open(current_path + "/" + project_name + "/src/main/java/com/"+project_name+"/Application.java", "w+")
@@ -106,9 +109,13 @@ public class Application {\n\
     )
 
 
-def write_model(project_name, model_name, schema):
-    current_path = os.getcwd()
-    model = open(current_path+"/"+model_name.title()+".java", "w+")
+def write_model(project_name, model_name, schema, target=""):
+    if target == "test":
+        current_path = os.getcwd()
+        model = open(current_path+"/"+model_name.title()+".java", "w+")
+    else:
+        model = open(target+"/"+model_name.title()+".java", "w+")
+
     model.write("package com."+project_name+".models;\n\
 import javax.persistence.*;\n\
 import java.time.ZonedDateTime;\n\
@@ -147,9 +154,12 @@ public class "+model_name.title()+" {\n\
             )
 
 
-def write_repo(project_name, model_name):
-    current_path = os.getcwd()
-    model = open(current_path + "/" + model_name.title()+"Repository.java", "w+")
+def write_repo(project_name, model_name, target=""):
+    if target == "":
+        current_path = os.getcwd()
+        model = open(current_path + "/" + model_name.title()+"Repository.java", "w+")
+    else:
+        model = open(target + "/" + model_name.title()+"Repository.java", "w+")
     model.write("package com."+project_name+".repositories;\n\
 \n\
 import com."+project_name+".models."+model_name.title()+";\n\
@@ -161,9 +171,13 @@ public interface "+model_name.title()+"Repository extends JpaRepository<"+model_
 }")
 
 
-def write_controller(project_name, model_name):
-    current_path = os.getcwd()
-    controller = open(current_path + "/" + model_name.title() + "Controller.java", "w+")
+def write_controller(project_name, model_name, target=""):
+    if target == "":
+        current_path = os.getcwd()
+        controller = open(current_path + "/" + model_name.title() + "Controller.java", "w+")
+    else:
+        controller = open(target + "/" + model_name.title() + "Controller.java", "w+")
+
     controller.write("package com."+project_name+".controllers;\n\
                      \n\
 import com."+project_name+".models."+model_name.title()+";\n\
@@ -205,9 +219,13 @@ public class "+model_name.title()+"Controller {\n\
     ")
 
 
-def write_service(project_name, service_name):
-    current_path = os.getcwd()
-    service = open(current_path + "/" + service_name.title() + "Controller.java", "w+")
+def write_service(project_name, service_name, target=""):
+    if target == "":
+        current_path = os.getcwd()
+        service = open(current_path + "/" + service_name.title() + "Controller.java", "w+")
+    else:
+        service = open(target + "/" + service_name.title() + "Controller.java", "w+")
+
     service.write("\n\
 package com."+project_name+".services;\n\
 \n\
