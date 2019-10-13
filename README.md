@@ -11,31 +11,29 @@ run either `./main.py` or `./main.py --help` for the following
 Usage: main.py [OPTIONS]
 
 Options:
-  -g, --generate            Generate and build a spring server
+  `-g, --generate`            Generate and build a spring server
   
-  -a, --rest                Generate a full service, repo and model pipeline specifying: 
-                            
+  `-a, --rest`                Generate a full service, repo and model pipeline specifying: 
+  
                             project name
                             
                             model name
+                           
+                            db schema name
                             
-                            db schema
-                            
-                            name
-                            
-  -s, --service             Generate a service class specifying
+  `-s, --service`             Generate a service class specifying
   
                             project name
                             
                             service name
                             
-  -r, --repo                Generate a repository interface specifying
+  `-r, --repo`                Generate a repository interface specifying
   
                             project name
                             
                             model name
                             
-  -m, --model               Generate a model specifying
+  `-m, --model`               Generate a model specifying
   
                             project name
                             
@@ -43,12 +41,12 @@ Options:
                             
                             db schema name
                             
-  -c, --controller          Generate a api controller specifying
+  `-c, --controller`          Generate a api controller specifying
   
                             project name
                             
                             model name
                             
-  --help                    Show this message and exit.
+  `--help`                    Show this message and exit.
 
 
