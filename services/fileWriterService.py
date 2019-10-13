@@ -1,5 +1,4 @@
 import os
-import click
 
 
 def write_application_properties(project_name, database_name, database_url):
@@ -21,7 +20,7 @@ spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true\n\
 ")
 
 
-def write_pom(project_name):
+def write_pom(project_name, spring_boot_version):
     current_path = os.getcwd()
     pom = open(current_path + "/" + project_name + "/pom.xml", "w+")
     pom.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
@@ -37,7 +36,7 @@ def write_pom(project_name):
 \n\
         <groupId>org.springframework.boot</groupId>\n\
         <artifactId>spring-boot-starter-parent</artifactId>\n\
-        <version>2.0.5.RELEASE</version>\n\
+        <version>" + spring_boot_version + "</version>\n\
         <relativePath />\n\
         <!-- lookup parent from reposictory -->\n\
     </parent>\n\

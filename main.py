@@ -8,6 +8,7 @@ import services.fileWriterService as fileWriter
 
 @click.command()
 @click.option('--generate', '-g', is_flag=True, help="Generate and build a spring server")
+@click.option('--spring-boot-version', '-v', default="2.1.9.RELEASE", help="Specify which version of Spring Boot to use")
 @click.option('--rest', '-a', nargs=3, help="Generate a full service, repo and model pipeline specifying: \n"
                                                              "project name\n"
                                                              "model name\n"
@@ -25,7 +26,7 @@ import services.fileWriterService as fileWriter
 @click.option('--controller', '-c',nargs=2, help="Generate a api controller specifying\n"
                                                  "project name\n"
                                                  "model name")
-def main(generate, rest, service, repo, model, controller):
+def main(generate, spring_boot_version, rest, service, repo, model, controller):
     if generate:
         project_name = click.prompt("Input project name")
         db_local = click.prompt("Is your db local? (y/yes or n/no)")
@@ -44,7 +45,7 @@ def main(generate, rest, service, repo, model, controller):
         click.echo("Making {} ...".format(project_name))
         directoryService.make_file_structure(project_name)
 
-        fileWriter.write_pom(project_name)
+        fileWriter.write_pom(project_name, spring_boot_version)
         fileWriter.write_application_properties(project_name, database_name, database_url)
         fileWriter.write_application_java(project_name)
 
