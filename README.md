@@ -1,7 +1,7 @@
 # JavaRESTcli
 A cli utility to generate a java rest api using spring, hibernate and postgreSQL 
 
-All you need to start is access to a postgreSQL database, maven and java 1.8
+All you need to start is access to a postgreSQL database, python 3, maven and java 1.8
 
 run `./main.py` in the tool directory or alias it as it builds the project in the current directory.
 Follow the prompts, and then navigate into your new project directory and run `mvn spring-boot:run` to start the new api.
