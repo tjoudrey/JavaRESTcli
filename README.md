@@ -31,9 +31,7 @@ Options:
                             
   -r, --repo                Generate a repository interface specifying
   
-                            project
-                            
-                            name
+                            project name
                             
                             model name
                             
